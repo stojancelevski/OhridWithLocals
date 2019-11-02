@@ -1,0 +1,27 @@
+<form novalidate [formGroup]="registerForm">
+
+  <div class="authBlock">
+    <h3>Sign Up</h3>
+
+    <label>Name</label>
+    <input type="text" formControlName="name"><br>
+    <label>Surname</label>
+    <input type="text" formControlName="surname"><br>
+    <label>Email</label>
+    <input type="text" formControlName="email"><br>
+    <label>Password</label>
+    <input type="password" formControlName="password"><br>
+    <div class="formGroup">
+      <input type="button" class="btn btnPrimary" value="Sign Up"
+             (click)="submit()">
+    </div>
+
+
+  </div>
+
+  <div class="redirectToLogin">
+    <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+  </div>
+
+
+</form>
