@@ -13,13 +13,15 @@ import {LoginModule} from './login/login.module';
 import {AuthService} from './auth.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {FirebaseService} from './firebase.service';
+import { HomeJumbotronComponent } from './home-jumbotron/home-jumbotron.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HomeJumbotronComponent
   ],
   imports: [
     LoginModule,
