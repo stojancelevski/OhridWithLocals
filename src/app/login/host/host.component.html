@@ -1,3 +1,32 @@
-<p>
-  host works!
-</p>
+<div><br><br>
+  <form novalidate [formGroup]="hostRegisterForm">
+
+    <div class="authBlock">
+      <h3>Sign Up</h3>
+
+      <label>Name</label>
+      <input type="text" formControlName="name"><br>
+      <label>Surname</label>
+      <input type="text" formControlName="surname"><br>
+      <label>Place of Living</label>
+      <input type="text" formControlName="place"><br>
+      <label>Email</label>
+      <input type="text" formControlName="email"><br>
+      <label>Password</label>
+      <input type="password" formControlName="password"><br>
+      <div class="formGroup">
+        <input type="button" class="btn btnPrimary" value="Sign Up as Host"
+               (click)="submit()">
+      </div>
+
+
+    </div>
+
+    <div class="redirectToLogin">
+      <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+    </div>
+
+
+  </form>
+
+</div>

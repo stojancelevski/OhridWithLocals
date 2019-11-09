@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../auth.service';
+import {AuthService} from '../../services/auth/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FirebaseService} from '../../firebase.service';
+import {FirebaseService} from '../../services/firebase/firebase.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -34,15 +34,12 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     this.authService.SignUp(this.registerFormControls.email, this.registerFormControls.password).then(() => {
-      this.fireService.createUser(this.registerFormControls).then(() => {
-        console.log(this.registerFormControls);
-        this.route.navigate(['sign-in']);
-      }).catch(val => {
-        window.alert(val);
-      });
-
+      this.fireService.createUser(this.registerFormControls);
+      window.alert('Thanks for Registering, Sign In Now');
+      this.route.navigate(['sign-in']);
+    }).catch(val => {
+      window.alert(val);
     });
-
   }
 }
 

@@ -5,17 +5,17 @@ import {SignInComponent} from './sign-in/sign-in.component';
 import {RegisterComponent} from './register/register.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {VerifyEmailComponent} from './verify-email/verify-email.component';
-import {SecureInnerPagesGuard} from '../shared/guard/secure-inner-pages.guard';
 import {HostComponent} from './host/host.component';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
-import {FirebaseService} from '../firebase.service';
+import {FirebaseService} from '../services/firebase/firebase.service';
+import {AngularFireDatabase} from '@angular/fire/database';
 
 const routes: Routes = [
-  {path: 'sign-in', component: SignInComponent, canActivate: [SecureInnerPagesGuard]},
-  {path: 'become-host', component: HostComponent, canActivate: [SecureInnerPagesGuard]},
-  {path: 'register-user', component: RegisterComponent, canActivate: [SecureInnerPagesGuard]},
-  {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard]},
-  {path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard]}
+  {path: 'sign-in', component: SignInComponent},
+  {path: 'become-host', component: HostComponent},
+  {path: 'register-user', component: RegisterComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
+  {path: 'verify-email-address', component: VerifyEmailComponent}
 ];
 
 @NgModule({
@@ -39,7 +39,8 @@ const routes: Routes = [
   ],
   providers: [
     FormBuilder,
-    FirebaseService
+    FirebaseService,
+    AngularFireDatabase,
   ]
 })
 export class LoginModule {

@@ -9,15 +9,25 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="sign-in">Log In</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="register-user">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="become-host">Become a Host</a>
-      </li>
+      <ng-container *ngIf="authService.isLoggedIn">
+        <li class="nav-item">
+          <a class="nav-link">Welcome {{ user?.loggedInUser.name }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logOut()">Log Out</a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="!authService.isLoggedIn">
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="sign-in">Log In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="register-user">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="become-host">Become a Host</a>
+        </li>
+      </ng-container>
     </ul>
   </div>
 </nav>

@@ -1,5 +1,7 @@
 <!-- Sidebar navigation -->
 <div class="container-fluid">
   <app-home-jumbotron></app-home-jumbotron>
+  <button class="btn btn-primary" [disabled]="!authService.isLoggedIn || host" routerLink="/create-tour">Create Tour
+  </button>
 
 </div>

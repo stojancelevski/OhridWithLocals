@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../auth.service';
+import {AuthService} from '../../services/auth/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FirebaseService} from '../../firebase.service';
+import {FirebaseService} from '../../services/firebase/firebase.service';
+import {Router} from '@angular/router';
+import {UserService} from '../../services/user/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,18 +13,20 @@ import {FirebaseService} from '../../firebase.service';
 export class SignInComponent implements OnInit {
 
   loginForm: FormGroup;
-  data: Array<any>;
   user: any;
+
   constructor(public authService: AuthService,
               public fb: FormBuilder,
-              private fireService: FirebaseService
-  ) {
+              private router: Router,
+              public firebaseService: FirebaseService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      typeOfSigh: [false]
     });
   }
 
@@ -30,14 +34,57 @@ export class SignInComponent implements OnInit {
     return this.loginForm.value;
   }
 
-  submit() {
-    // this.fireService.getUsers().subscribe(value => {
-    //   value.map(item => {
-    //     this.data = item.payload.doc.data();
-    //     console.log(this.data);
-    //   });
-    // });
-    this.authService.SignIn(this.loginFormControls.email, this.loginFormControls.password);
-    this.authService.loggedUser = this.loginFormControls;
+  loginAsHost() {
+    this.getHosts(this.loginFormControls.email);
+    setTimeout(() => {
+      if (this.userService.loggedInUser !== undefined && this.userService.loggedInUser !== null) {
+        this.authService.SignIn(this.loginFormControls.email, this.loginFormControls.password).then(() => {
+            this.authService.isLoggedIn = true;
+            this.router.navigate(['home']);
+          }
+        ).catch(err => {
+          this.userService.loggedInUser = null;
+          window.alert(err);
+        });
+      } else {
+        this.loginForm.reset();
+        window.alert('Your status is not matched with our records please login with your correct status user/host');
+      }
+    }, 1000);
   }
+
+  loginAsUser() {
+    this.getUsers(this.loginFormControls.email);
+    setTimeout(() => {
+      if (this.userService.loggedInUser !== undefined && this.userService.loggedInUser !== null) {
+        this.authService.SignIn(this.loginFormControls.email, this.loginFormControls.password).then(() => {
+            this.authService.isLoggedIn = true;
+            this.router.navigate(['home']);
+          }
+        ).catch(err => {
+          this.userService.loggedInUser = null;
+          window.alert(err);
+        });
+      } else {
+        this.loginForm.reset();
+        window.alert('Your status is not matched with our records please login with your correct status user/host');
+      }
+    }, 1000);
+
+  }
+
+  getUsers(email: string) {
+    this.firebaseService.getUsersList().subscribe(users => {
+      const user = users.find(x => x.email === email);
+      this.userService.loggedInUser = user;
+    });
+  }
+
+  getHosts(email: string) {
+    this.firebaseService.getHostsList().subscribe(users => {
+      const user = users.find(x => x.email === email);
+      this.userService.loggedInUser = user;
+    });
+  }
+
 }

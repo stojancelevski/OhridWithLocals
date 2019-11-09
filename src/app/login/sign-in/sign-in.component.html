@@ -16,7 +16,18 @@
             <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
                    placeholder="Password">
           </div>
-          <button type="submit" class="btn btn-success btn-block" (click)="submit()">Log In</button>
+          <!-- Default checked -->
+          Sign in as Host
+          <label class="switch">
+            <input type="checkbox" formControlName="typeOfSigh">
+            <span class="slider round"></span>
+          </label>
+          <ng-container *ngIf="!loginFormControls.typeOfSigh">
+            <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.valid" a (click)="loginAsUser()">Log In</button>
+          </ng-container>
+          <ng-container *ngIf="loginFormControls.typeOfSigh">
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid" (click)="loginAsHost()">Log In</button>
+          </ng-container>
           <button type="submit" class="btn btn-success btn-block" routerLink="/register-user">Register</button>
 
         </div>

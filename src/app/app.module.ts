@@ -10,10 +10,12 @@ import {AngularFireModule} from '@angular/fire';
 import {HomeComponent} from './home/home.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {LoginModule} from './login/login.module';
-import {AuthService} from './auth.service';
+import {AuthService} from './services/auth/auth.service';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {FirebaseService} from './firebase.service';
+import {FirebaseService} from './services/firebase/firebase.service';
 import { HomeJumbotronComponent } from './home-jumbotron/home-jumbotron.component';
+import { CreateTourComponent } from './tours/create-tour/create-tour.component';
+import {ToursModule} from './tours/tours.module';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,12 @@ import { HomeJumbotronComponent } from './home-jumbotron/home-jumbotron.componen
     NavbarComponent,
     HomeComponent,
     NotFoundComponent,
-    HomeJumbotronComponent
+    HomeJumbotronComponent,
+    CreateTourComponent
   ],
   imports: [
     LoginModule,
+    ToursModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),

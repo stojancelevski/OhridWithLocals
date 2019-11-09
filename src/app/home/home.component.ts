@@ -1,6 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FirebaseService} from '../firebase.service';
+import {FirebaseService} from '../services/firebase/firebase.service';
+import {AuthService} from '../services/auth/auth.service';
+import {map} from 'rxjs/internal/operators';
+import {Observable} from 'rxjs';
+import {UserService} from '../services/user/user.service';
+import {SignInComponent} from '../login/sign-in/sign-in.component';
 
 @Component({
   selector: 'app-home',
@@ -9,18 +14,23 @@ import {FirebaseService} from '../firebase.service';
 })
 export class HomeComponent implements OnInit {
 
-  users: Array<any>;
+  host: boolean;
 
-  constructor(public firebaseService: FirebaseService,
-              private router: Router) {
+
+  constructor(private authService: AuthService,
+              public userService: UserService,
+  ) {
   }
 
   ngOnInit() {
-    this.firebaseService.getUsers().subscribe(value => {
-      value.map(item => {
-        console.log(item.payload.doc.data());
-      });
-    });
+    if (this.userService.loggedInUser !== undefined && this.userService.loggedInUser !== null) {
+      console.log(this.userService.loggedInUser);
+      if (this.userService.loggedInUser.host === true) {
+        this.host = false;
+      } else {
+        this.host = true;
+      }
+    }
   }
 
 }
