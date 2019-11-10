@@ -37,6 +37,7 @@ export class FirebaseService {
   searchTour(field, value) {
     return this.tourRef.query.orderByChild(field).equalTo(value);
   }
+  searchHost()
 
   // Return an observable list with optional query
   getUsers(): AngularFireList<any> {
@@ -45,6 +46,9 @@ export class FirebaseService {
 
   getHosts(): AngularFireList<any> {
     return this.hostRef;
+  }
+  getTours(): AngularFireList<any> {
+    return this.tourRef;
   }
 
   getUsersList(): Observable<any> {
@@ -59,6 +63,15 @@ export class FirebaseService {
 
   getHostsList(): Observable<any> {
     return this.getHosts().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({key: c.payload.key, ...c.payload.val()})
+        )
+      )
+    );
+  }
+  getToursList(): Observable<any> {
+    return this.getTours().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({key: c.payload.key, ...c.payload.val()})

@@ -1,6 +1,8 @@
 export interface Tour {
-  destination: string;
+  title: string;
+  place: string;
+  hostId: string;
   duration: number;
   time: number;
-  type: string;
+  typeOfTour: string;
 }

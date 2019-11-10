@@ -5,3 +5,20 @@
   </button>
 
 </div>
+<div class="row" align="center">
+  <ng-container *ngFor="let tour of tours">
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="../../assets/images/panoramic_view.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{tour.title}}</h5>
+          <p class="card-text">{{tour.duration}}</p>
+          <p class="card-text">{{tour.place}}</p>
+          <p class="card-text">{{tour.typeOfTour}}</p>
+          <a href="#" class="btn btn-primary">Reserve</a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+

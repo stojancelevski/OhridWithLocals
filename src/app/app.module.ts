@@ -24,7 +24,6 @@ import {ToursModule} from './tours/tours.module';
     HomeComponent,
     NotFoundComponent,
     HomeJumbotronComponent,
-    CreateTourComponent
   ],
   imports: [
     LoginModule,

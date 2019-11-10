@@ -1,11 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 import {FirebaseService} from '../services/firebase/firebase.service';
 import {AuthService} from '../services/auth/auth.service';
-import {map} from 'rxjs/internal/operators';
-import {Observable} from 'rxjs';
 import {UserService} from '../services/user/user.service';
-import {SignInComponent} from '../login/sign-in/sign-in.component';
+import {Tour} from '../interfaces/tour';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +12,11 @@ import {SignInComponent} from '../login/sign-in/sign-in.component';
 export class HomeComponent implements OnInit {
 
   host: boolean;
-
+  tours: Tour;
 
   constructor(private authService: AuthService,
               public userService: UserService,
-  ) {
+              private fireService: FirebaseService) {
   }
 
   ngOnInit() {
@@ -31,6 +28,13 @@ export class HomeComponent implements OnInit {
         this.host = true;
       }
     }
+    this.getTour();
+  }
+
+  getTour() {
+    this.fireService.getToursList().subscribe(tours => {
+      this.tours = tours;
+    });
   }
 
 }

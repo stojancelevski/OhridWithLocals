@@ -1,7 +1,8 @@
 export interface User {
-  id: string;
+  key: string;
   name: string;
   surname: string;
   email: string;
+  place: string;
   host: boolean;
 }
