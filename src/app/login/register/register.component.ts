@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
       surname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      phoneNum: ['', Validators.required],
       host: [false]
     });
   }
@@ -41,5 +42,6 @@ export class RegisterComponent implements OnInit {
       window.alert(val);
     });
   }
+
 }
 

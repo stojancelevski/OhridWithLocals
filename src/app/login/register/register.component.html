@@ -1,27 +1,74 @@
 <form novalidate [formGroup]="registerForm">
-
-  <div class="authBlock">
-    <h3>Sign Up</h3>
-
-    <label>Name</label>
-    <input type="text" formControlName="name"><br>
-    <label>Surname</label>
-    <input type="text" formControlName="surname"><br>
-    <label>Email</label>
-    <input type="text" formControlName="email"><br>
-    <label>Password</label>
-    <input type="password" formControlName="password"><br>
-    <div class="formGroup">
-      <input type="button" class="btn btnPrimary" value="Sign Up"
-             (click)="submit()">
+  <div class="container-fluids bg">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12"></div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- form start -->
+        <div class="form-container">
+          <h1 align="center"> REGISTRATION </h1>
+          <div class="form-group">
+           <input type="name"
+                   class="form-control"
+                   placeholder="Enter your Name"
+                   formControlName="name"
+                   [ngClass]="{'is-invalid': (
+                   registerForm.get('name').touched ||
+                   registerForm.get('name').dirty) &&
+                   !registerForm.get('name').valid }"
+            >
+          </div>
+          <div class="form-group">
+            <input type="surname"
+                   class="form-control"
+                   placeholder="Enter your Surname"
+                   formControlName="surname"
+                   [ngClass]="{'is-invalid': (
+                   registerForm.get('surname').touched ||
+                   registerForm.get('surname').dirty) &&
+                   !registerForm.get('surname').valid }"
+            >
+          </div>
+          <div class="form-group">
+            <input type="surname"
+                   class="form-control"
+                   placeholder="Enter your Phone Number"
+                   formControlName="phoneNum"
+                   [ngClass]="{'is-invalid': (
+                   registerForm.get('phoneNum').touched ||
+                   registerForm.get('phoneNum').dirty) &&
+                   !registerForm.get('phoneNum').valid }"
+            >
+          </div>
+          <div class="form-group">
+            <input type="email"
+                   class="form-control"
+                   placeholder="Enter your Email"
+                   formControlName="email"
+                   [ngClass]="{'is-invalid': (
+                   registerForm.get('email').touched ||
+                   registerForm.get('email').dirty) &&
+                   !registerForm.get('email').valid }"
+            >
+          </div>
+          <div class="form-group">
+            <input type="password"
+                   class="form-control"
+                   placeholder="Enter your Password"
+                   formControlName="password"
+                   [ngClass]="{'is-invalid': (
+                   registerForm.get('password').touched ||
+                   registerForm.get('password').dirty) &&
+                   !registerForm.get('password').valid }"
+            >
+          </div>
+          <button type="submit" class="btn btn-success btn-block" [disabled]="!registerForm.valid" (click)="submit()">
+            SIGN UP
+          </button>
+          <span>Already have an account? <a class="badge badge-success" routerLink="/sign-in">Log In</a></span>
+        </div>
+        <!-- form ends-->
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12"></div>
     </div>
-
-
   </div>
-
-  <div class="redirectToLogin">
-    <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
-  </div>
-
-
 </form>

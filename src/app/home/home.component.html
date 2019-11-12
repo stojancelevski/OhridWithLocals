@@ -4,21 +4,78 @@
   <button class="btn btn-primary" [disabled]="!authService.isLoggedIn || host" routerLink="/create-tour">Create Tour
   </button>
 
-</div>
+</div><br>
+<p class="display-4">Choose one of this types</p>
 <div class="row" align="center">
-  <ng-container *ngFor="let tour of tours">
+  <div class="col-md-3">
+    <button class="btn btn-primary" routerLink="/daily-tours">
+      Day Trip
+    </button>
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-primary" routerLink="/adventure-tours">
+      Adventure Trip
+    </button>
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-primary" routerLink="/night-tours">
+      Night Trip
+    </button>
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-primary" routerLink="/foodies">
+      Food Trip
+    </button>
+  </div>
+</div>
+<p class="display-4">All things to do in Ohrid</p>
+<div class="row" align="center">
+  <ng-container *ngFor="let tour of tours; let i = index" [attr.data-index]="i">
     <div class="col-md-4">
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="../../assets/images/panoramic_view.jpg" alt="Card image cap">
+        <img class="card-img-top" [src]="tour.url" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{tour.title}}</h5>
-          <p class="card-text">{{tour.duration}}</p>
-          <p class="card-text">{{tour.place}}</p>
-          <p class="card-text">{{tour.typeOfTour}}</p>
-          <a href="#" class="btn btn-primary">Reserve</a>
+          <p class="card-text">{{filterHost(tour.hostId)?.name}}</p>
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" (click)="checkReservation(tour.key)" [attr.data-target]="'#MyModal'+tour.key">
+            View More Details
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" [attr.id]="'MyModal'+tour.key" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{tour.title}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <ng-container *ngIf="host">
+              <button class="btn btn-primary"  *ngIf="reservationButton" data-dismiss="modal" (click)="reserve(tour.key)">
+                Reserve
+              </button>
+              <button class="btn btn-primary"  *ngIf="!reservationButton" data-dismiss="modal" (click)="deleteReservation(tour.key)">
+              Cancel Reservation
+              </button>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
   </ng-container>
 </div>
+<!-- Button trigger modal -->
+
+
+
+
 

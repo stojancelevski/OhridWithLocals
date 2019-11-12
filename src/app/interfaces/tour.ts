@@ -5,4 +5,7 @@ export interface Tour {
   duration: number;
   time: number;
   typeOfTour: string;
+  url: string;
+  date: string;
+  key: string;
 }

@@ -6,4 +6,5 @@ export interface Host {
   password: string;
   place: string;
   host: boolean;
+  key: string;
 }
