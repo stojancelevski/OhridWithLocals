@@ -3,9 +3,9 @@ import {FirebaseService} from '../services/firebase/firebase.service';
 import {AuthService} from '../services/auth/auth.service';
 import {UserService} from '../services/user/user.service';
 import {Tour} from '../interfaces/tour';
-import {Host} from '../interfaces/host';
 import {Reservation} from '../interfaces/reservation';
 import {Router} from '@angular/router';
+import {User} from '../interfaces/user';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +14,8 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   hosts: any;
+  filteredUsers: Array<User> = [];
+  users: any;
   hostName: string;
   host: boolean;
   tours: Tour[];
@@ -29,6 +31,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getTour();
     this.getHosts();
+    this.getUsers();
     if (this.userService.loggedInUser !== undefined && this.userService.loggedInUser !== null) {
       console.log(this.userService.loggedInUser);
       this.getReservations();
@@ -42,6 +45,12 @@ export class HomeComponent implements OnInit {
 
   reserve(key) {
     this.fireService.createReservation({tourId: key, userId: this.userService.loggedInUser.key});
+  }
+
+  getUsers() {
+    this.fireService.getUsersList().subscribe(users => {
+      this.users = users;
+    });
   }
 
   getTour() {
@@ -87,6 +96,20 @@ export class HomeComponent implements OnInit {
     if (match !== undefined) {
       this.fireService.deleteReservation(match.key);
     }
+  }
+
+  viewReservations(tourKey) {
+    console.log(tourKey);
+    this.fireService.getReservationsList().subscribe(reseravtions => {
+      const reservationFromTour = reseravtions.filter(reservation => reservation.tourId === tourKey);
+      console.log(reservationFromTour);
+      reservationFromTour.forEach(match => {
+        let customObj = this.users.filter(user => user.key === match.userId);
+        console.log(customObj);
+        this.filteredUsers.push(customObj);
+      });
+    });
+
   }
 
 }

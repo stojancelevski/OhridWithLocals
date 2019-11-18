@@ -12,10 +12,12 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {LoginModule} from './login/login.module';
 import {AuthService} from './services/auth/auth.service';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {FirebaseService} from './services/firebase/firebase.service';
-import { HomeJumbotronComponent } from './home-jumbotron/home-jumbotron.component';
-import { CreateTourComponent } from './tours/create-tour/create-tour.component';
+import {HomeJumbotronComponent} from './home-jumbotron/home-jumbotron.component';
 import {ToursModule} from './tours/tours.module';
+import {FooterComponent} from './footer/footer.component';
+import {TypesComponent} from './tours/types/types.component';
+import {PopularComponent} from './tours/popular/popular.component';
+import {FoodPlacesComponent} from './tours/food-places/food-places.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,11 @@ import {ToursModule} from './tours/tours.module';
     HomeComponent,
     NotFoundComponent,
     HomeJumbotronComponent,
+    FooterComponent,
+    TypesComponent,
+    PopularComponent,
+    FoodPlacesComponent
+
   ],
   imports: [
     LoginModule,

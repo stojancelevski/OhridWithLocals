@@ -18,7 +18,7 @@
             >
           </div>
           <div class="form-group">
-            <input type="surname"
+            <input type="text"
                    class="form-control"
                    placeholder="Enter your Surname"
                    formControlName="surname"
@@ -29,16 +29,19 @@
             >
           </div>
           <div class="form-group">
-            <input type="surname"
-                   class="form-control"
-                   placeholder="Enter your Place of Living"
-                   formControlName="place"
-                   [ngClass]="{'is-invalid': (
+            <select class="form-control" formControlName="place"
+                    [ngClass]="{'is-invalid': (
                    hostRegisterForm.get('place').touched ||
                    hostRegisterForm.get('place').dirty) &&
-                   !hostRegisterForm.get('place').valid }"
-            >
+                   !hostRegisterForm.get('place').valid }">
+              <option value="" selected disabled>Select Place</option>
+              <option>Ohrid</option>
+              <option>Ljubanishta</option>
+              <option>Peshtani</option>
+              <option>Kuratica</option>
+            </select>
           </div>
+
           <div class="form-group">
             <input type="email"
                    class="form-control"

@@ -5,6 +5,7 @@ import {map} from 'rxjs/internal/operators';
 import * as firebase from 'firebase';
 import {Tour} from '../../interfaces/tour';
 import {Upload} from '../../interfaces/upload';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class FirebaseService {
   private uploadTask: firebase.storage.UploadTask;
   storageTask: any;
 
-  constructor(private database: AngularFireDatabase) {
+  constructor(private database: AngularFireDatabase, private route: Router) {
     this.usersRef = database.list('/users');
     this.hostRef = database.list('/hosts');
     this.tourRef = database.list('/tours');
@@ -56,6 +57,7 @@ export class FirebaseService {
         this.storageTask.getDownloadURL().then(url => {
           value.url = url;
           this.tourRef.push(value);
+          this.route.navigate(['home']);
         });
       }
     )

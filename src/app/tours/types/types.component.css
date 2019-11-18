@@ -1,0 +1,14 @@
+.container {
+  margin-top: 8%;
+}
+.inner {
+  overflow: hidden;
+}
+
+.inner img{
+  transition: alt 1.5s ease;
+}
+
+.inner:hover img {
+  transform: scale(1.5);
+}

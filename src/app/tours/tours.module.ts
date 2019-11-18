@@ -4,9 +4,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {CreateTourComponent} from './create-tour/create-tour.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DayTripsComponent} from './day-trips/day-trips.component';
-import { AdventureComponent } from './adventure/adventure.component';
-import { NightComponent } from './night/night.component';
-import { FoodComponent } from './food/food.component';
+import {AdventureComponent} from './adventure/adventure.component';
+import {NightComponent} from './night/night.component';
+import {FoodComponent} from './food/food.component';
+import {FoodPlacesComponent} from './food-places/food-places.component';
 
 const routes: Routes = [
   {path: 'create-tour', component: CreateTourComponent},

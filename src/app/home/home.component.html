@@ -1,78 +1,143 @@
 <!-- Sidebar navigation -->
-<div class="container-fluid">
-  <app-home-jumbotron></app-home-jumbotron>
-  <button class="btn btn-primary" [disabled]="!authService.isLoggedIn || host" routerLink="/create-tour">Create Tour
-  </button>
-
-</div><br>
-<p class="display-4">Choose one of this types</p>
-<div class="row" align="center">
-  <div class="col-md-3">
-    <button class="btn btn-primary" routerLink="/daily-tours">
-      Day Trip
-    </button>
-  </div>
-  <div class="col-md-3">
-    <button class="btn btn-primary" routerLink="/adventure-tours">
-      Adventure Trip
-    </button>
-  </div>
-  <div class="col-md-3">
-    <button class="btn btn-primary" routerLink="/night-tours">
-      Night Trip
-    </button>
-  </div>
-  <div class="col-md-3">
-    <button class="btn btn-primary" routerLink="/foodies">
-      Food Trip
-    </button>
-  </div>
-</div>
-<p class="display-4">All things to do in Ohrid</p>
-<div class="row" align="center">
-  <ng-container *ngFor="let tour of tours; let i = index" [attr.data-index]="i">
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" [src]="tour.url" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{tour.title}}</h5>
-          <p class="card-text">{{filterHost(tour.hostId)?.name}}</p>
-
-          <button type="button" class="btn btn-primary" data-toggle="modal" (click)="checkReservation(tour.key)" [attr.data-target]="'#MyModal'+tour.key">
-            View More Details
+<div class="container">
+    <app-home-jumbotron></app-home-jumbotron>
+    <div align="center">
+      <div class="container-contact100-form-btn">
+        <div class="wrap-contact100-form-btn">
+          <div class="contact100-form-bgbtn"></div>
+          <button class="contact100-form-btn"  [disabled]="!authService.isLoggedIn || host" routerLink="/create-tour">
+							<span>
+								Create Tour
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
           </button>
         </div>
       </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" [attr.id]="'MyModal'+tour.key" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{tour.title}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <ng-container *ngIf="host">
-              <button class="btn btn-primary"  *ngIf="reservationButton" data-dismiss="modal" (click)="reserve(tour.key)">
-                Reserve
-              </button>
-              <button class="btn btn-primary"  *ngIf="!reservationButton" data-dismiss="modal" (click)="deleteReservation(tour.key)">
-              Cancel Reservation
-              </button>
-            </ng-container>
+</div>
+
+
+<app-types></app-types>
+<div class="container">
+  <app-popular></app-popular>
+</div>
+
+<div class="row">
+  <div class="container">
+    <h1><b>Things to do</b></h1>
+    <h4>Activities and Tours</h4>
+    <br>
+    <br>
+    <div class="card-deck" align="center">
+      <ng-container *ngFor="let tour of tours; let i = index" [attr.data-index]="i">
+        <div class="col-md-4">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded-top">
+            <div class="card1" style="width: 20rem;">
+              <img [src]="tour.url" class="card-img-top" alt="..." fix>
+              <div class="card-body bg-light">
+                <h4 class="align-center">{{i+1}} | {{tour.title}} </h4>
+                <h6 class="align-center">Host: {{filterHost(tour.hostId)?.name}} </h6>
+                <p class="card-text"><a class="btn btn-secondary" data-toggle="modal"
+                                        (click)="checkReservation(tour.key)"
+                                        [attr.data-target]="'#MyModal'+tour.key">More</a></p>
+                <ng-container *ngIf="!host">
+                  <ng-container *ngIf="authService.isLoggedIn">
+                    <p class="card-text"><a class="btn btn-secondary" data-toggle="modal"
+                                            (click)="viewReservations(tour.key)"
+                                            [attr.data-target]="'#Reservations'+tour.key">View Reservatons</a></p>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        <!-- Modal -->
+        <div class="modal fade" [attr.id]="'MyModal'+tour.key" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{tour.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label><i class="fa fa-user"></i> Host</label>
+                  <h5 class="text">{{filterHost(tour.hostId)?.name}}</h5>
+
+                </div>
+                <div class="form-group">
+                  <label><i class="fa fa-date"></i> Date</label>
+                  {{tour.date}}
+                </div>
+                <div class="form-group">
+                  <label>Time</label>
+                  <h5 class="text">{{tour.time}}</h5>
+                </div>
+                <div class="form-group">
+                  <label> Duration</label>
+                  <h5 class="text">{{tour.duration}} min</h5>
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <ng-container *ngIf="host">
+                  <button class="btn btn-primary" *ngIf="reservationButton" data-dismiss="modal"
+                          (click)="reserve(tour.key)">
+                    Reserve
+                  </button>
+                  <button class="btn btn-primary" *ngIf="!reservationButton" data-dismiss="modal"
+                          (click)="deleteReservation(tour.key)">
+                    Cancel Reservation
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" [attr.id]="'Reservations'+tour.key" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">{{tour.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <ng-container *ngFor="let user of filteredUsers">
+                  {{user.name}}
+                </ng-container>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <ng-container *ngIf="host">
+                  <button class="btn btn-primary" *ngIf="reservationButton" data-dismiss="modal"
+                          (click)="reserve(tour.key)">
+                    Reserve
+                  </button>
+                  <button class="btn btn-primary" *ngIf="!reservationButton" data-dismiss="modal"
+                          (click)="deleteReservation(tour.key)">
+                    Cancel Reservation
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+
     </div>
-  </ng-container>
+  </div>
 </div>
+<app-food-places></app-food-places><br>
+
+<app-footer>
+</app-footer>
 <!-- Button trigger modal -->
 
 
