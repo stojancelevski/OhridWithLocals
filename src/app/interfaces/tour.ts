@@ -8,4 +8,5 @@ export interface Tour {
   url: string;
   date: string;
   key: string;
+  maxPeople: string;
 }

@@ -9,6 +9,8 @@ import {HostComponent} from './host/host.component';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {FirebaseService} from '../services/firebase/firebase.service';
 import {AngularFireDatabase} from '@angular/fire/database';
+import {ButtonComponent} from '../button/button.component';
+import {SharedModule} from '../shared/shared.module';
 
 const routes: Routes = [
   {path: 'sign-in', component: SignInComponent},
@@ -24,9 +26,10 @@ const routes: Routes = [
     RegisterComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    HostComponent
+    HostComponent,
   ],
   imports: [
+    SharedModule,
     ReactiveFormsModule,
     CommonModule,
     RouterModule.forChild(routes)

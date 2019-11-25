@@ -1,80 +1,109 @@
-<form novalidate [formGroup]="tourForm"><br>
-  <button type="submit" class="btn btn-primary" (click)="createTour()">Submit</button>
-  <div class="container-contact100">
-    <div class="wrap-contact100">
-      <div class="contact100-form validate-form">
+<form class="container-contact100" novalidate [formGroup]="tourForm"><br><br>
+  <div class="wrap-contact100">
+    <div class="contact100-form validate-form">
 				<span class="contact100-form-title">
 					Create a Tour
 				</span>
 
+      <div class="wrap-input100 validate-input">
+        <span class="label-input100">Title</span>
+        <input class="input100" type="text" formControlName="title" placeholder="Enter name of tour">
+        <span class="focus-input100"></span>
+        <span class="label-input100"></span>
+      </div>
 
-        <div class="wrap-input100 validate-input">
-          <span class="label-input100">Title</span>
-          <input class="input100" type="text" formControlName="title" placeholder="Enter name of tour">
-          <span class="focus-input100"></span>
-        </div>
-        <div class="wrap-input100 validate-input">
-          <span class="label-input100">Place of Living</span>
-          <input class="input100" type="text" formControlName="place" value="{{user.loggedInUser.place}}"
-                 placeholder="Enter place of Living">
-          <span class="focus-input100"></span>
-        </div>
-        <div class="wrap-input100 validate-input">
-          <span class="label-input100">Date</span>
-          <input class="date-input" formControlName="date" type="date">
-          <span class="focus-input100"></span>
-        </div>
-        <div class="wrap-input100 validate-input">
-          <span class="label-input100">Time</span>
-          <input class="input100" type="text" formControlName="time" placeholder="Enter time of Happening">
-          <span class="focus-input100"></span>
-        </div>
-        <div class="wrap-input100 validate-input">
-          <span class="label-input100">Duration</span>
-          <input class="input100" type="text" formControlName="duration" placeholder="Enter duration of tour">
-          <span class="focus-input100"></span>
-        </div>
 
-        <div class="wrap-input100 input100-select">
-          <span class="label-input100">Type of Tour</span>
-          <div>
-            <select class="selection-2" formControlName="typeOfTour">
-              <option value="" selected disabled>Select Type</option>
-              <option value="adventure">Adventure Trips</option>
-              <option value="day">Day Trips</option>
-              <option value="night">Night Trips</option>
-              <option value="food">Foodies</option>
-            </select>
-          </div>
-          <span class="focus-input100"></span>
+      <div class="wrap-input100 validate-input">
+        <span class="label-input100">Place of Living</span>
+        <input class="input100" type="text" formControlName="place" value="{{user.loggedInUser.place}}"
+               placeholder="Enter place of Living">
+        <span class="focus-input100"></span>
+
+      </div>
+      <div class="wrap-input100 validate-input">
+        <span class="label-input100">Date</span>
+        <input class="date-input" formControlName="date" type="date">
+        <span class="focus-input100"></span>
+
+      </div>
+      <div class="wrap-input100 validate-input">
+        <span class="label-input100">Time</span>
+        <input class="input100" type="text" formControlName="time" placeholder="Enter time of Happening">
+        <span class="focus-input100"></span>
+
+      </div>
+      <div class="wrap-input100 validate-input">
+        <span class="label-input100">Duration</span>
+        <input class="input100" type="text" formControlName="duration" placeholder="Enter duration of tour">
+        <span class="focus-input100"></span>
+
+      </div>
+
+      <div class="wrap-input100 input100-select">
+        <span class="label-input100">Type of Tour</span>
+        <div>
+          <select class="selection-2" formControlName="typeOfTour">
+            <option value="" selected disabled>Select Type</option>
+            <option value="adventure">Adventure Trips</option>
+            <option value="day">Day Trips</option>
+            <option value="night">Night Trips</option>
+            <option value="food">Foodies</option>
+          </select>
         </div>
-
-        <div class="wrap-input100 input100-select">
-          <span class="label-input100">Choose image to upload:</span>
-
-          <input type="file" (change)="detectFIles($event)">
-          <span class="focus-input100"></span>
+        <span class="focus-input100"></span>
+      </div>
+      <div class="wrap-input100 input100-select">
+        <span class="label-input100">Number of people</span>
+        <div>
+          <select class="selection-2" formControlName="maxPeople">
+            <option value="" selected disabled>Select number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
         </div>
+        <span class="focus-input100"></span>
 
-        <div class="container-contact100-form-btn">
-          <div class="wrap-contact100-form-btn">
-            <div class="contact100-form-bgbtn"></div>
-            <button class="contact100-form-btn" (click)="createTour()" [disabled]="!tourForm.valid">
+      </div>
+
+      <div class="wrap-input100 input100-select">
+        <span class="label-input100">Choose image to upload:</span>
+
+        <input type="file" (change)="detectFIles($event)">
+        <span class="focus-input100"></span>
+      </div>
+      <div class="container-contact100-form-btn">
+        <div class="wrap-contact100-form-btn">
+          <div class="contact100-form-bgbtn"></div>
+          <button class="contact100-form-btn" [disabled]="!tourForm.valid" (click)="createTour()">
 							<span>
 								Create
 								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 							</span>
-            </button>
+          </button>
+        </div>
+      </div>
+      <!--<div class="container-contact100-form-btn">-->
+      <!--<div class="wrap-contact100-form-btn">-->
+      <!--<div class="contact100-form-bgbtn"></div>-->
+      <!--<button class="contact100-form-btn" (click)="createTour()" [disabled]="!tourForm.valid">-->
+      <!--<span>-->
+      <!--Create-->
+      <!--<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>-->
+      <!--</span>-->
+      <!--</button>-->
+      <!--</div>-->
+      <!--</div>-->
+      <br><br>
+      <div *ngIf="currentUpload">
+        <div class="progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{'width': currentUpload?.progress + '%'}">
           </div>
         </div>
-        <br><br>
-        <div *ngIf="currentUpload">
-          <div class="progress">
-            <div class="progress-bar progress-bar-animated" [ngStyle]="{'width': currentUpload?.progress + '%'}">
-            </div>
-          </div>
 
-        </div>
       </div>
     </div>
   </div>

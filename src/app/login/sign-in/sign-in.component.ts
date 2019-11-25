@@ -48,7 +48,7 @@ export class SignInComponent implements OnInit {
         });
       } else {
         this.loginForm.reset();
-        window.alert('Your status is not matched with our records please login with your correct status user/host');
+        window.alert('Your status is not matched with our records please login again');
       }
     }, 1000);
   }

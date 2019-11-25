@@ -25,6 +25,16 @@
                    loginForm.get('email').dirty) &&
                    !loginForm.get('email').valid }"
             >
+            <span class="invalid-feedback">
+              <ng-container *ngIf="loginForm.get('email').errors?.required">
+              Please enter your email.
+                              </ng-container>
+             </span>
+            <span class="invalid-feedback">
+              <ng-container *ngIf="loginForm.get('email').errors?.email">
+              Please enter valid mail.
+                              </ng-container>
+             </span>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
@@ -39,6 +49,16 @@
                    !loginForm.get('password').valid }"
 
             >
+            <span class="invalid-feedback">
+              <ng-container *ngIf="loginForm.get('password').errors?.required">
+              Please enter your password.
+                              </ng-container>
+             </span>
+            <span class="invalid-feedback">
+              <ng-container *ngIf="loginForm.get('password').errors?.minlength">
+              Password should be at least 6 characters.
+                              </ng-container>
+             </span>
           </div>
           <!-- Default checked -->
 
@@ -46,44 +66,33 @@
             <div class="container-contact100-form-btn">
               <div class="wrap-contact100-form-btn">
                 <div class="contact100-form-bgbtn"></div>
-                <button class="contact100-form-btn" [disabled]="!loginForm.valid"
-                        (click)="loginAsUser()">
+                <button class="contact100-form-btn" [disabled]="!loginForm.valid" (click)="loginAsUser()">
 							<span>
 								Login
 								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 							</span>
                 </button>
-                <button class="contact100-form-btn" routerLink="/register-user">
-							<span>
-								Register
-								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-							</span>
-                </button>
               </div>
             </div>
+            <app-button [buttonTitle]="'Register'" routerLink="/register-user">
+            </app-button>
           </ng-container>
           <ng-container *ngIf="loginFormControls.typeOfSigh">
             <div class="container-contact100-form-btn">
               <div class="wrap-contact100-form-btn">
                 <div class="contact100-form-bgbtn"></div>
-                <button class="contact100-form-btn" [disabled]="!loginForm.valid"
-                               (click)="loginAsHost()">
+                <button class="contact100-form-btn" [disabled]="!loginForm.valid" (click)="loginAsHost()">
 							<span>
 								Login
-								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-							</span>
-              </button>
-                <button class="contact100-form-btn" routerLink="/register-user">
-							<span>
-								Register
 								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 							</span>
                 </button>
               </div>
             </div>
-
+            <app-button [buttonTitle]="'Register'" routerLink="/register-user">
+            </app-button>
           </ng-container>
-
+          <span>Forgot your password? <a class="badge badge-success" routerLink="/forgot-password">Reset</a></span>
         </div>
         <!-- form ends-->
       </div>

@@ -1,6 +1,4 @@
 
-
-
 .bg {
   background: #a64bf4;
   background: -webkit-linear-gradient(45deg, #00dbde, #fc00ff);
@@ -16,12 +14,13 @@
 .form-container {
   border: 0px solid #fff;
   padding: 50px 60px;
-  margin-top: 19vh;
-  margin-bottom: 9vh;
+  margin-top: 15vh;
+  margin-bottom: 54px;
   -webkit-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
 }
+
 .switch {
   position: relative;
   display: inline-block;

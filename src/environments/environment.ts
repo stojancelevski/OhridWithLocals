@@ -14,6 +14,15 @@ export const environment = {
     appId: '1:851053481973:web:20f323415912a646165abc',
     measurementId: 'G-V6SE61T2FQ'
   }
+  // const firebaseConfig = {
+  //   apiKey: "AIzaSyCBgNySERonssEa52iCP1RfDb8X267xBr4",
+  //   authDomain: "ohridwithlocals-72007.firebaseapp.com",
+  //   databaseURL: "https://ohridwithlocals-72007.firebaseio.com",
+  //   projectId: "ohridwithlocals-72007",
+  //   storageBucket: "ohridwithlocals-72007.appspot.com",
+  //   messagingSenderId: "516532324832",
+  //   appId: "1:516532324832:web:7c15e4f86795cb48ecc385"
+  // };
 };
 
 /*

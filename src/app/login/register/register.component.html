@@ -16,6 +16,11 @@
                    registerForm.get('name').dirty) &&
                    !registerForm.get('name').valid }"
             >
+            <span class="invalid-feedback">
+              <ng-container *ngIf="registerForm.get('name').errors?.required">
+              Please enter your name.
+                              </ng-container>
+             </span>
           </div>
           <div class="form-group">
             <input type="surname"
@@ -27,6 +32,11 @@
                    registerForm.get('surname').dirty) &&
                    !registerForm.get('surname').valid }"
             >
+            <span class="invalid-feedback">
+              <ng-container *ngIf="registerForm.get('surname').errors?.required">
+              Please enter your surname.
+                              </ng-container>
+             </span>
           </div>
           <div class="form-group">
             <input type="surname"
@@ -38,6 +48,11 @@
                    registerForm.get('phoneNum').dirty) &&
                    !registerForm.get('phoneNum').valid }"
             >
+            <span class="invalid-feedback">
+              <ng-container *ngIf="registerForm.get('phoneNum').errors?.required">
+              Please enter your phone number.
+                              </ng-container>
+             </span>
           </div>
           <div class="form-group">
             <input type="email"
@@ -49,6 +64,16 @@
                    registerForm.get('email').dirty) &&
                    !registerForm.get('email').valid }"
             >
+            <span class="invalid-feedback">
+              <ng-container *ngIf="registerForm.get('email').errors?.required">
+              Please enter your mail
+                              </ng-container>
+             </span>
+            <span class="invalid-feedback">
+              <ng-container *ngIf="registerForm.get('email').errors?.required">
+              Please enter valid mail.
+                              </ng-container>
+             </span>
           </div>
           <div class="form-group">
             <input type="password"
@@ -60,6 +85,16 @@
                    registerForm.get('password').dirty) &&
                    !registerForm.get('password').valid }"
             >
+            <span class="invalid-feedback">
+              <ng-container *ngIf="registerForm.get('password').errors?.required">
+              Please enter your password.
+                              </ng-container>
+             </span>
+            <span class="invalid-feedback">
+              <ng-container *ngIf="registerForm.get('password').errors?.minlength">
+              Password should be at least 6 characters.
+                              </ng-container>
+             </span>
           </div>
           <button type="submit" class="btn btn-success btn-block" [disabled]="!registerForm.valid" (click)="submit()">
             SIGN UP

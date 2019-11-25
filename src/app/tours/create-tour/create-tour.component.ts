@@ -24,16 +24,17 @@ export class CreateTourComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.user.loggedInUser === undefined) {
-      window.alert('Forbidden Access');
-      this.router.navigate(['/home']);
-    }
+    // if (this.user.loggedInUser === undefined) {
+    //   window.alert('Forbidden Access');
+    //   this.router.navigate(['/home']);
+    // }
     this.tourForm = this.fb.group({
         title: ['', Validators.required],
         place: [this.user.loggedInUser.place, Validators.required],
         hostId: [this.user.loggedInUser.key],
         time: ['', Validators.required],
         duration: ['', Validators.required],
+        maxPeople: ['', Validators.required],
         typeOfTour: ['', Validators.required],
         date: ['', Validators.required]
       }

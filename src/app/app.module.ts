@@ -18,6 +18,8 @@ import {FooterComponent} from './footer/footer.component';
 import {TypesComponent} from './tours/types/types.component';
 import {PopularComponent} from './tours/popular/popular.component';
 import {FoodPlacesComponent} from './tours/food-places/food-places.component';
+import {ButtonComponent} from './button/button.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,16 +31,18 @@ import {FoodPlacesComponent} from './tours/food-places/food-places.component';
     FooterComponent,
     TypesComponent,
     PopularComponent,
-    FoodPlacesComponent
+    FoodPlacesComponent,
 
   ],
   imports: [
+    SharedModule,
     LoginModule,
     ToursModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+
   ],
   providers: [
     AuthService,

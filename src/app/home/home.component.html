@@ -1,19 +1,19 @@
 <!-- Sidebar navigation -->
-<div class="container">
-    <app-home-jumbotron></app-home-jumbotron>
-    <div align="center">
-      <div class="container-contact100-form-btn">
-        <div class="wrap-contact100-form-btn">
-          <div class="contact100-form-bgbtn"></div>
-          <button class="contact100-form-btn"  [disabled]="!authService.isLoggedIn || host" routerLink="/create-tour">
+<div class="container"><br>
+  <app-home-jumbotron></app-home-jumbotron>
+  <div align="center">
+    <div class="container-contact100-form-btn">
+      <div class="wrap-contact100-form-btn">
+        <div class="contact100-form-bgbtn"></div>
+        <button class="contact100-form-btn" [disabled]="!authService.isLoggedIn || host" routerLink="/create-tour">
 							<span>
 								Create Tour
 								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 							</span>
-          </button>
-        </div>
+        </button>
       </div>
     </div>
+  </div>
 
 </div>
 
@@ -23,12 +23,13 @@
   <app-popular></app-popular>
 </div>
 
-<div class="row">
-  <div class="container">
-    <h1><b>Things to do</b></h1>
-    <h4>Activities and Tours</h4>
-    <br>
-    <br>
+<div class="container">
+  <h1><b>Things to do</b></h1>
+  <h4>Activities and Tours</h4>
+  <br>
+  <br>
+  <div class="row">
+
     <div class="card-deck" align="center">
       <ng-container *ngFor="let tour of tours; let i = index" [attr.data-index]="i">
         <div class="col-md-4">
@@ -38,14 +39,18 @@
               <div class="card-body bg-light">
                 <h4 class="align-center">{{i+1}} | {{tour.title}} </h4>
                 <h6 class="align-center">Host: {{filterHost(tour.hostId)?.name}} </h6>
+                <h6 class="align-center">Reserved: {{filterReservations(tour.key)}} / {{tour.maxPeople}}</h6>
+
                 <p class="card-text"><a class="btn btn-secondary" data-toggle="modal"
                                         (click)="checkReservation(tour.key)"
                                         [attr.data-target]="'#MyModal'+tour.key">More</a></p>
                 <ng-container *ngIf="!host">
                   <ng-container *ngIf="authService.isLoggedIn">
-                    <p class="card-text"><a class="btn btn-secondary" data-toggle="modal"
-                                            (click)="viewReservations(tour.key)"
-                                            [attr.data-target]="'#Reservations'+tour.key">View Reservatons</a></p>
+                    <ng-container *ngIf="tour.hostId === userService.loggedInUser.key">
+                      <p class="card-text"><a class="btn btn-secondary" data-toggle="modal"
+                                              (click)="viewReservations(tour.key)"
+                                              [attr.data-target]="'#Reservations'+tour.key">View Reservatons</a></p>
+                    </ng-container>
                   </ng-container>
                 </ng-container>
               </div>
@@ -85,10 +90,16 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <ng-container *ngIf="host">
-                  <button class="btn btn-primary" *ngIf="reservationButton" data-dismiss="modal"
-                          (click)="reserve(tour.key)">
-                    Reserve
-                  </button>
+                  <ng-container *ngIf="reservationButton">
+                    <button class="btn btn-primary" *ngIf="filterReservations(tour.key) !== +tour.maxPeople"
+                            data-dismiss="modal"
+                            (click)="reserve(tour.key)">
+                      Reserve
+                    </button>
+                    <ng-container *ngIf="filterReservations(tour.key) === +tour.maxPeople">
+                      <h3><span class="badge badge-danger">Already Reserved</span></h3>
+                    </ng-container>
+                  </ng-container>
                   <button class="btn btn-primary" *ngIf="!reservationButton" data-dismiss="modal"
                           (click)="deleteReservation(tour.key)">
                     Cancel Reservation
@@ -108,9 +119,21 @@
                 </button>
               </div>
               <div class="modal-body">
-                <ng-container *ngFor="let user of filteredUsers">
-                  {{user.name}}
-                </ng-container>
+                <div class="card" style="width: 18rem;">
+                  <ul class="list-group list-group-flush">
+                    <ng-container *ngFor="let objs of filteredUsers">
+                      <ng-container *ngFor="let user of objs">
+                        <ng-container *ngIf="user">
+                          <li class="list-group-item">
+                            User: {{user.name}}
+                            <br>
+                            Contact Number: {{user.phoneNum}}
+                          </li>
+                        </ng-container>
+                      </ng-container>
+                    </ng-container>
+                  </ul>
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -135,9 +158,9 @@
   </div>
 </div>
 <app-food-places></app-food-places><br>
-
 <app-footer>
 </app-footer>
+
 <!-- Button trigger modal -->
 
 

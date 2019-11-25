@@ -14,7 +14,8 @@ import {User} from '../interfaces/user';
 })
 export class HomeComponent implements OnInit {
   hosts: any;
-  filteredUsers: Array<User> = [];
+  filteredUsers: any;
+  allReservations: Reservation[];
   users: any;
   hostName: string;
   host: boolean;
@@ -33,14 +34,15 @@ export class HomeComponent implements OnInit {
     this.getHosts();
     this.getUsers();
     if (this.userService.loggedInUser !== undefined && this.userService.loggedInUser !== null) {
-      console.log(this.userService.loggedInUser);
       this.getReservations();
+      console.log(this.userService.loggedInUser);
       if (this.userService.loggedInUser.host === true) {
         this.host = false;
       } else {
         this.host = true;
       }
     }
+    this.getAllReservations();
   }
 
   reserve(key) {
@@ -77,17 +79,32 @@ export class HomeComponent implements OnInit {
       this.reservations = reservations.filter(reservation =>
         reservation.userId === this.userService.loggedInUser.key
       );
-      console.log(this.reservations);
 
     });
   }
 
+  getAllReservations() {
+    this.fireService.getReservationsList().subscribe(reservations => {
+      this.allReservations = reservations;
+      console.log(this.allReservations);
+    });
+  }
+
+  filterReservations(tourKey) {
+    if (this.allReservations !== undefined) {
+      const reservations = this.allReservations.filter(reservation => reservation.tourId === tourKey);
+      return reservations.length;
+    }
+  }
+
   checkReservation(tourKey) {
-    const match = this.reservations.find(reservation => reservation.tourId === tourKey);
-    if (match !== undefined) {
-      this.reservationButton = false;
-    } else {
-      this.reservationButton = true;
+    if (this.reservations !== undefined) {
+      const match = this.reservations.find(reservation => reservation.tourId === tourKey);
+      if (match !== undefined) {
+        this.reservationButton = false;
+      } else {
+        this.reservationButton = true;
+      }
     }
   }
 
@@ -99,17 +116,17 @@ export class HomeComponent implements OnInit {
   }
 
   viewReservations(tourKey) {
-    console.log(tourKey);
+    this.filteredUsers = new Array(0);
     this.fireService.getReservationsList().subscribe(reseravtions => {
       const reservationFromTour = reseravtions.filter(reservation => reservation.tourId === tourKey);
       console.log(reservationFromTour);
       reservationFromTour.forEach(match => {
         let customObj = this.users.filter(user => user.key === match.userId);
-        console.log(customObj);
         this.filteredUsers.push(customObj);
       });
     });
-
+    console.log(this.filteredUsers);
   }
+
 
 }

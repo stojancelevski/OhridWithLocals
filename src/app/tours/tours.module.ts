@@ -8,6 +8,8 @@ import {AdventureComponent} from './adventure/adventure.component';
 import {NightComponent} from './night/night.component';
 import {FoodComponent} from './food/food.component';
 import {FoodPlacesComponent} from './food-places/food-places.component';
+import {ButtonComponent} from '../button/button.component';
+import {SharedModule} from '../shared/shared.module';
 
 const routes: Routes = [
   {path: 'create-tour', component: CreateTourComponent},
@@ -25,9 +27,10 @@ const routes: Routes = [
     DayTripsComponent,
     AdventureComponent,
     NightComponent,
-    FoodComponent
+    FoodComponent,
   ],
   imports: [
+    SharedModule,
     ReactiveFormsModule,
     CommonModule,
     RouterModule.forChild(routes)
