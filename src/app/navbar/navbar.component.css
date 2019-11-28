@@ -1,9 +1,9 @@
 .bg-navbar {
-  background: rgba(204,204,204,0.6);
+  background: rgba(204,204,204,0.3);
 }
 .navbar-brand {
-   padding-top: 0px;
-   padding-bottom: 0px;
+   padding-top: 0;
+   padding-bottom: 0;
 }
 a {
   font-size: 18px;

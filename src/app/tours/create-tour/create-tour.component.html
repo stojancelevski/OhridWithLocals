@@ -72,7 +72,7 @@
       <div class="wrap-input100 input100-select">
         <span class="label-input100">Choose image to upload:</span>
 
-        <input type="file" (change)="detectFIles($event)">
+        <input type="file"  accept="image/*" (change)="detectFIles($event)">
         <span class="focus-input100"></span>
       </div>
       <div class="container-contact100-form-btn">
@@ -86,17 +86,6 @@
           </button>
         </div>
       </div>
-      <!--<div class="container-contact100-form-btn">-->
-      <!--<div class="wrap-contact100-form-btn">-->
-      <!--<div class="contact100-form-bgbtn"></div>-->
-      <!--<button class="contact100-form-btn" (click)="createTour()" [disabled]="!tourForm.valid">-->
-      <!--<span>-->
-      <!--Create-->
-      <!--<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>-->
-      <!--</span>-->
-      <!--</button>-->
-      <!--</div>-->
-      <!--</div>-->
       <br><br>
       <div *ngIf="currentUpload">
         <div class="progress">

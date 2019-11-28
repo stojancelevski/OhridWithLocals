@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user/user.service';
 import {FirebaseService} from '../../services/firebase/firebase.service';
-import {Tour} from '../../interfaces/tour';
 import {Upload} from '../../interfaces/upload';
 import {Router} from '@angular/router';
 
@@ -13,7 +12,6 @@ import {Router} from '@angular/router';
 })
 export class CreateTourComponent implements OnInit {
   tourForm: FormGroup;
-  imageURL: string;
   selectedFile: FileList;
   currentUpload: Upload;
 
@@ -24,10 +22,10 @@ export class CreateTourComponent implements OnInit {
   }
 
   ngOnInit() {
-    // if (this.user.loggedInUser === undefined) {
-    //   window.alert('Forbidden Access');
-    //   this.router.navigate(['/home']);
-    // }
+    if (this.user.loggedInUser === undefined) {
+      window.alert('Forbidden Access');
+      this.router.navigate(['/home']);
+    }
     this.tourForm = this.fb.group({
         title: ['', Validators.required],
         place: [this.user.loggedInUser.place, Validators.required],
@@ -50,9 +48,13 @@ export class CreateTourComponent implements OnInit {
   }
 
   createTour() {
-    let file = this.selectedFile.item(0);
-    this.currentUpload = new Upload(file);
-    this.fireService.createTour(this.tourFormControls, this.currentUpload);
+    if (this.currentUpload === undefined) {
+      window.alert('Please upload Image');
+    } else {
+      const file = this.selectedFile.item(0);
+      this.currentUpload = new Upload(file);
+      this.fireService.createTour(this.tourFormControls, this.currentUpload);
+    }
   }
 
 

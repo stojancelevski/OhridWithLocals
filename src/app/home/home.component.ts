@@ -121,12 +121,17 @@ export class HomeComponent implements OnInit {
       const reservationFromTour = reseravtions.filter(reservation => reservation.tourId === tourKey);
       console.log(reservationFromTour);
       reservationFromTour.forEach(match => {
-        let customObj = this.users.filter(user => user.key === match.userId);
+        const customObj = this.users.filter(user => user.key === match.userId);
         this.filteredUsers.push(customObj);
       });
     });
     console.log(this.filteredUsers);
   }
 
+  test() {
+    if (this.authService.isLoggedIn === false || this.host === false) {
+      console.log('only for host');
+    }
+  }
 
 }

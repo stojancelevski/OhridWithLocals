@@ -20,6 +20,8 @@ import {PopularComponent} from './tours/popular/popular.component';
 import {FoodPlacesComponent} from './tours/food-places/food-places.component';
 import {ButtonComponent} from './button/button.component';
 import {SharedModule} from './shared/shared.module';
+import {TooltipModule} from 'ng2-tooltip-directive';
+import { SitemapComponent } from './sitemap/sitemap.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +34,12 @@ import {SharedModule} from './shared/shared.module';
     TypesComponent,
     PopularComponent,
     FoodPlacesComponent,
+    SitemapComponent,
 
   ],
   imports: [
     SharedModule,
+    TooltipModule,
     LoginModule,
     ToursModule,
     BrowserModule,

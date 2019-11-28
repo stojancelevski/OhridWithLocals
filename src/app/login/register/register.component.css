@@ -2,7 +2,11 @@
 
 
 .bg {
-  background: url('../../../assets/images/panoramic_view.jpg') no-repeat;
+  background: #a64bf4;
+  background: -webkit-linear-gradient(90deg, #00dbde, #fc00ff);
+  background: -o-linear-gradient(90deg, #00dbde, #fc00ff);
+  background: -moz-linear-gradient(90deg, #00dbde, #fc00ff);
+  background: linear-gradient(90deg, #00dbde, #fc00ff);
   width: 100%;
   /*height: 100vh;*/
   background-size: cover;
@@ -13,7 +17,7 @@
   border: 0px solid #fff;
   padding: 50px 60px;
   margin-top: 19vh;
-  margin-bottom: 8vh;
+  margin-bottom: 7vh;
   -webkit-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);

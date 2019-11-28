@@ -1,77 +1,88 @@
-<form novalidate [formGroup]="hostRegisterForm">
-  <div class="container-fluids bg">
-    <div class="row">
-      <div class="col-md-4 col-sm-4 col-xs-12"></div>
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        <!-- form start -->
-        <div class="form-container">
-          <h1 align="center"> BECOME A HOST </h1>
-          <div class="form-group">
-            <input type="name"
-                   class="form-control"
-                   placeholder="Enter your Name"
-                   formControlName="name"
-                   [ngClass]="{'is-invalid': (
+<div class="bg">
+  <form novalidate [formGroup]="hostRegisterForm">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <!-- form start -->
+          <div class="form-container">
+            <h1 align="center"> BECOME A HOST </h1>
+            <div class="form-group">
+              <input type="name"
+                     class="form-control"
+                     placeholder="Enter your Name"
+                     formControlName="name"
+                     [ngClass]="{'is-invalid': (
                    hostRegisterForm.get('name').touched ||
                    hostRegisterForm.get('name').dirty) &&
                    !hostRegisterForm.get('name').valid }"
-            >
-          </div>
-          <div class="form-group">
-            <input type="text"
-                   class="form-control"
-                   placeholder="Enter your Surname"
-                   formControlName="surname"
-                   [ngClass]="{'is-invalid': (
+              >
+            </div>
+            <div class="form-group">
+              <input type="text"
+                     class="form-control"
+                     placeholder="Enter your Surname"
+                     formControlName="surname"
+                     [ngClass]="{'is-invalid': (
                    hostRegisterForm.get('surname').touched ||
                    hostRegisterForm.get('surname').dirty) &&
                    !hostRegisterForm.get('surname').valid }"
-            >
-          </div>
-          <div class="form-group">
-            <select class="form-control" formControlName="place"
-                    [ngClass]="{'is-invalid': (
+              >
+            </div>
+            <div class="form-group">
+              <select class="form-control" formControlName="place"
+                      [ngClass]="{'is-invalid': (
                    hostRegisterForm.get('place').touched ||
                    hostRegisterForm.get('place').dirty) &&
                    !hostRegisterForm.get('place').valid }">
-              <option value="" selected disabled>Select Place</option>
-              <option>Ohrid</option>
-              <option>Ljubanishta</option>
-              <option>Peshtani</option>
-              <option>Kuratica</option>
-            </select>
-          </div>
+                <option value="" selected disabled>Select Place</option>
+                <option>Ohrid</option>
+                <option>Ljubanishta</option>
+                <option>Peshtani</option>
+                <option>Kuratica</option>
+              </select>
+            </div>
 
-          <div class="form-group">
-            <input type="email"
-                   class="form-control"
-                   placeholder="Enter your Email"
-                   formControlName="email"
-                   [ngClass]="{'is-invalid': (
+            <div class="form-group">
+              <input type="email"
+                     class="form-control"
+                     placeholder="Enter your Email"
+                     formControlName="email"
+                     [ngClass]="{'is-invalid': (
                    hostRegisterForm.get('email').touched ||
                    hostRegisterForm.get('email').dirty) &&
                    !hostRegisterForm.get('email').valid }"
-            >
-          </div>
-          <div class="form-group">
-            <input type="password"
-                   class="form-control"
-                   placeholder="Enter your Password"
-                   formControlName="password"
-                   [ngClass]="{'is-invalid': (
+              >
+            </div>
+            <div class="form-group">
+              <input type="password"
+                     class="form-control"
+                     placeholder="Enter your Password"
+                     formControlName="password"
+                     [ngClass]="{'is-invalid': (
                    hostRegisterForm.get('password').touched ||
                    hostRegisterForm.get('password').dirty) &&
                    !hostRegisterForm.get('password').valid }"
-            >
+              >
+            </div>
+            <div class="container-contact100-form-btn">
+              <div class="wrap-contact100-form-btn">
+                <div class="contact100-form-bgbtn"></div>
+                <button class="contact100-form-btn" [disabled]="!hostRegisterForm.valid" (click)="submit()">
+							<span>
+								Sign Up
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+                </button>
+              </div>
+            </div>
+            <span>Already have an account? <a class="badge badge-success" routerLink="/sign-in">Log In</a></span>
           </div>
-          <button type="submit" class="btn btn-success btn-block" [disabled]="!hostRegisterForm.valid" (click)="submit()">
-            SIGN UP
-          </button>
-          <span>Already have an account? <a class="badge badge-success" routerLink="/sign-in">Log In</a></span>
+          <!-- form ends-->
         </div>
-        <!-- form ends-->
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
       </div>
-      <div class="col-md-4 col-sm-4 col-xs-12"></div>
     </div>
-  </div>
-</form>
+  </form>
+
+</div>
