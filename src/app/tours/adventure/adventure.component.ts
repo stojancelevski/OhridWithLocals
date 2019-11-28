@@ -112,7 +112,7 @@ export class AdventureComponent implements OnInit {
       const reservationFromTour = reseravtions.filter(reservation => reservation.tourId === tourKey);
       console.log(reservationFromTour);
       reservationFromTour.forEach(match => {
-        let customObj = this.users.filter(user => user.key === match.userId);
+        const customObj = this.users.filter(user => user.key === match.userId);
         this.filteredUsers.push(customObj);
       });
     });
