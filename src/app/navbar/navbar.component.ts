@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from '../services/auth/auth.service';
 import {Router} from '@angular/router';
-import {User} from '../interfaces/user';
 import {UserService} from '../services/user/user.service';
 
 @Component({
@@ -11,13 +10,11 @@ import {UserService} from '../services/user/user.service';
 })
 export class NavbarComponent {
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private router: Router,
-              public user: UserService
-  ) {
+              public user: UserService) {
 
   }
-
 
 
   logOut(): void {

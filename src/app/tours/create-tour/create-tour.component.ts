@@ -16,7 +16,7 @@ export class CreateTourComponent implements OnInit {
   currentUpload: Upload;
 
   constructor(private fb: FormBuilder,
-              private user: UserService,
+              public user: UserService,
               private fireService: FirebaseService,
               private router: Router) {
   }

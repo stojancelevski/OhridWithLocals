@@ -50,7 +50,7 @@ export class FirebaseService {
         upload.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       },
       (error) => {
-        console.log(error);
+        window.alert(error);
       },
       () => {
         // upload success

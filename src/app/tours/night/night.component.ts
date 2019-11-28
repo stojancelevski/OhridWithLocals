@@ -85,7 +85,6 @@ export class NightComponent implements OnInit {
   getAllReservations() {
     this.fireService.getReservationsList().subscribe(reservations => {
       this.allReservations = reservations;
-      console.log(this.allReservations);
     });
   }
   checkReservation(tourKey) {
@@ -110,13 +109,11 @@ export class NightComponent implements OnInit {
     this.filteredUsers = new Array(0);
     this.fireService.getReservationsList().subscribe(reseravtions => {
       const reservationFromTour = reseravtions.filter(reservation => reservation.tourId === tourKey);
-      console.log(reservationFromTour);
       reservationFromTour.forEach(match => {
         const customObj = this.users.filter(user => user.key === match.userId);
         this.filteredUsers.push(customObj);
       });
     });
-    console.log(this.filteredUsers);
   }
 
   reserve(key) {

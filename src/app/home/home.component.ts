@@ -4,8 +4,6 @@ import {AuthService} from '../services/auth/auth.service';
 import {UserService} from '../services/user/user.service';
 import {Tour} from '../interfaces/tour';
 import {Reservation} from '../interfaces/reservation';
-import {Router} from '@angular/router';
-import {User} from '../interfaces/user';
 
 @Component({
   selector: 'app-home',
@@ -23,10 +21,9 @@ export class HomeComponent implements OnInit {
   reservations: Reservation[];
   reservationButton = false;
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               public userService: UserService,
-              private fireService: FirebaseService,
-              private router: Router) {
+              private fireService: FirebaseService,) {
   }
 
   ngOnInit() {
@@ -35,7 +32,6 @@ export class HomeComponent implements OnInit {
     this.getUsers();
     if (this.userService.loggedInUser !== undefined && this.userService.loggedInUser !== null) {
       this.getReservations();
-      console.log(this.userService.loggedInUser);
       if (this.userService.loggedInUser.host === true) {
         this.host = false;
       } else {
@@ -86,7 +82,6 @@ export class HomeComponent implements OnInit {
   getAllReservations() {
     this.fireService.getReservationsList().subscribe(reservations => {
       this.allReservations = reservations;
-      console.log(this.allReservations);
     });
   }
 
@@ -119,19 +114,11 @@ export class HomeComponent implements OnInit {
     this.filteredUsers = new Array(0);
     this.fireService.getReservationsList().subscribe(reseravtions => {
       const reservationFromTour = reseravtions.filter(reservation => reservation.tourId === tourKey);
-      console.log(reservationFromTour);
       reservationFromTour.forEach(match => {
         const customObj = this.users.filter(user => user.key === match.userId);
         this.filteredUsers.push(customObj);
       });
     });
-    console.log(this.filteredUsers);
-  }
-
-  test() {
-    if (this.authService.isLoggedIn === false || this.host === false) {
-      console.log('only for host');
-    }
   }
 
 }

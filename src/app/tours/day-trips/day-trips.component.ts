@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Tour} from '../../interfaces/tour';
 import {FirebaseService} from '../../services/firebase/firebase.service';
-import {Host} from '../../interfaces/host';
 import {AuthService} from '../../services/auth/auth.service';
 import {Reservation} from '../../interfaces/reservation';
 import {UserService} from '../../services/user/user.service';
@@ -68,12 +67,14 @@ export class DayTripsComponent implements OnInit {
       this.hosts = hosts;
     });
   }
+
   filterReservations(tourKey) {
     if (this.allReservations !== undefined) {
       const reservations = this.allReservations.filter(reservation => reservation.tourId === tourKey);
       return reservations.length;
     }
   }
+
   getReservations() {
     this.fireService.getReservationsList().subscribe(reservations => {
       this.reservations = reservations.filter(reservation =>
@@ -86,9 +87,9 @@ export class DayTripsComponent implements OnInit {
   getAllReservations() {
     this.fireService.getReservationsList().subscribe(reservations => {
       this.allReservations = reservations;
-      console.log(this.allReservations);
     });
   }
+
   checkReservation(tourKey) {
     if (this.reservations !== undefined) {
       const match = this.reservations.find(reservation => reservation.tourId === tourKey);
@@ -111,13 +112,11 @@ export class DayTripsComponent implements OnInit {
     this.filteredUsers = new Array(0);
     this.fireService.getReservationsList().subscribe(reseravtions => {
       const reservationFromTour = reseravtions.filter(reservation => reservation.tourId === tourKey);
-      console.log(reservationFromTour);
       reservationFromTour.forEach(match => {
         const customObj = this.users.filter(user => user.key === match.userId);
         this.filteredUsers.push(customObj);
       });
     });
-    console.log(this.filteredUsers);
   }
 
   reserve(key) {

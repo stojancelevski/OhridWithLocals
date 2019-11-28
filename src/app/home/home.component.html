@@ -35,21 +35,21 @@
         <div class="col-md-4">
           <div class="shadow-lg p-3 mb-5 bg-white rounded-top">
             <div class="card1" style="width: 20rem;">
-              <img [src]="tour.url" class="card-img-top" alt="...">
+              <img [src]="tour.url" class="card-img-top" alt="..." fix>
               <div class="card-body bg-light">
                 <h4 class="align-center">{{i+1}} | {{tour.title}} </h4>
                 <h6 class="align-center">Host: {{filterHost(tour.hostId)?.name}} </h6>
                 <h6 class="align-center">Reserved: {{filterReservations(tour.key)}} / {{tour.maxPeople}}</h6>
 
-                <p class="card-text"><a class="reserveButton" data-toggle="modal"
+                <p class="card-text"><button class="btn-gradient btn-1" data-toggle="modal"
                                         (click)="checkReservation(tour.key)"
-                                        [attr.data-target]="'#MyModal'+tour.key">View more details</a></p>
+                                        [attr.data-target]="'#MyModal'+tour.key">View more details</button></p>
                 <ng-container *ngIf="!host">
                   <ng-container *ngIf="authService.isLoggedIn">
                     <ng-container *ngIf="tour.hostId === userService.loggedInUser.key">
-                      <p class="card-text"><a class="btn btn-secondary" data-toggle="modal"
+                      <p class="card-text"><button class="btn-gradient btn-2" data-toggle="modal"
                                               (click)="viewReservations(tour.key)"
-                                              [attr.data-target]="'#Reservations'+tour.key">View Reservatons</a></p>
+                                              [attr.data-target]="'#Reservations'+tour.key">View Reservatons</button></p>
                     </ng-container>
                   </ng-container>
                 </ng-container>
@@ -90,19 +90,19 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn-gradient btn-1" data-dismiss="modal">Close</button>
                 <ng-container *ngIf="host">
                   <ng-container *ngIf="reservationButton">
-                    <button class="reserveButton" *ngIf="filterReservations(tour.key) !== +tour.maxPeople"
+                    <button class="btn-gradient btn-2" *ngIf="filterReservations(tour.key) !== +tour.maxPeople"
                             data-dismiss="modal"
                             (click)="reserve(tour.key)">
                       Reserve
                     </button>
                     <ng-container *ngIf="filterReservations(tour.key) === +tour.maxPeople">
-                      <h3><span class="badge badge-danger">Already Reserved</span></h3>
+                      <h3><span class="btn-gradient btn-2">Already Reserved</span></h3>
                     </ng-container>
                   </ng-container>
-                  <button class="cancelReservation" *ngIf="!reservationButton" data-dismiss="modal"
+                  <button class="btn-gradient btn-2" *ngIf="!reservationButton" data-dismiss="modal"
                           (click)="deleteReservation(tour.key)">
                     Cancel Reservation
                   </button>
@@ -139,17 +139,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <ng-container *ngIf="host">
-                  <button class="btn btn-primary" *ngIf="reservationButton" data-dismiss="modal"
-                          (click)="reserve(tour.key)">
-                    Reserve
-                  </button>
-                  <button class="btn btn-primary" *ngIf="!reservationButton" data-dismiss="modal"
-                          (click)="deleteReservation(tour.key)">
-                    Cancel Reservation
-                  </button>
-                </ng-container>
+                <button type="button" class="btn-gradient btn-1" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
