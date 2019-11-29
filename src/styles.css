@@ -469,19 +469,16 @@ button[disabled] {
 }
 
 .btn-gradient {
-  -webkit-box-flex: 1;
-  flex: 1 1 auto;
-  margin: 10px;
+  margin: 3px;
   text-align: center;
   text-transform: uppercase;
+  -webkit-transition: 0.5s;
   transition: 0.5s;
   background-size: 200% auto;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 20px #eee;
   padding: .375rem .75rem;
   font-size: 1rem;
   line-height: 1.5;
-  border: 1px solid;
   border-radius: .25rem;
 }
 

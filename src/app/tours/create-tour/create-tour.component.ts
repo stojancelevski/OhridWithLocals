@@ -48,7 +48,7 @@ export class CreateTourComponent implements OnInit {
   }
 
   createTour() {
-    if (this.currentUpload === undefined) {
+    if (this.selectedFile === undefined) {
       window.alert('Please upload Image');
     } else {
       const file = this.selectedFile.item(0);
