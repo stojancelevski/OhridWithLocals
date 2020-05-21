@@ -14,10 +14,11 @@
       </div>
     </div>
   </div>
+</div>
+<div align = "center">
+  <app-about-us></app-about-us>
 
 </div>
-
-
 <app-types></app-types>
 <div class="container">
   <app-popular></app-popular>
@@ -65,21 +66,17 @@
               <!--Header-->
               <div class="modal-header">
                 <p class="heading">{{tour.title}}</p>
-
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true" class="white-text">&times;</span>
                 </button>
               </div>
-
               <!--Body-->
               <div class="modal-body">
-
                 <div class="row">
                   <div class="col-5">
                     <img [src]="tour.url"
                          class="img-fluid" alt="">
                   </div>
-
                   <div class="col-7" style="text-align: left">
                     <p><i class="fa fa-address-card"></i><strong> {{filterHost(tour.hostId)?.name}}
                       {{filterHost(tour.hostId)?.surname}}</strong></p>
@@ -144,7 +141,6 @@
             </div>
           </div>
         </div>
-
       </ng-container>
 
     </div>

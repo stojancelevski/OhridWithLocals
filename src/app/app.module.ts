@@ -21,6 +21,7 @@ import {FoodPlacesComponent} from './tours/food-places/food-places.component';
 import {SharedModule} from './shared/shared.module';
 import {TooltipModule} from 'ng2-tooltip-directive';
 import {SitemapComponent} from './sitemap/sitemap.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {SitemapComponent} from './sitemap/sitemap.component';
     PopularComponent,
     FoodPlacesComponent,
     SitemapComponent,
+    AboutUsComponent,
 
   ],
   imports: [
